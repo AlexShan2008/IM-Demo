@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let socket = new WebSocket('ws://localhost:8080');
+    socket.onopen = function () {
+        console.log('握手成功');
+        socket.send('服务器你好')
+    };
+    socket.onmessage = function (event) {
+        console.log(event.data);
+    }
+
+</script>
+</body>
+</html>

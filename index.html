@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<link rel="stylesheet" href="css/main.css">-->
+    <!--<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">    -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel-heading">
+                <h3>欢迎来到聊天室</h3>
+            </div>
+            <div class="panel-body">
+                <ul></ul>
+            </div>
+            <div class="panel-footer"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    //  socket.io脚本会向window上挂一个io的属性；
+    //  调用此方法，返回一个连接；
+    // 当客户端连接服务器成功后会执行对应的回调函数；
+    let socket = io('/');
+    socket.on('connect',function () {
+        console.log('握手成功');
+        socket.send('服务器你好');
+        socket.on('message',function (msg) {
+            console.log(msg);
+        })
+    });
+</script>
+</body>
+</html>
